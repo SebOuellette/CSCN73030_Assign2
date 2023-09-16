@@ -28,7 +28,13 @@ std::string readName(std::string line, unsigned int start = 0) {
 	}
 	name += '\0';
 
+
+#ifdef _DEBUG
+	if (!start)
+		std::cout << std::endl;
+
 	std::cout << '"' << name << "\" ";
+#endif
 
 	return name;
 }
@@ -60,8 +66,6 @@ int main() {
 		STUDENT_DATA dat = { lastname, readName(line, lastname.length()+1) };
 
 		vecSpace.push_back(dat);
-
-		std::cout << std::endl;
 	}
 
 	return 0;
