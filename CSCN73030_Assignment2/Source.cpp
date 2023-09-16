@@ -1,3 +1,6 @@
+// # Step 2
+// https://github.com/SebOuellette/CSCN73030_Assign2
+
 /*
 Next you need to implement the main function to read the StudentData.txt file, create student objects
 and store them into a vector space. Create a struct STUDENT_DATA that contains the first and last
@@ -41,8 +44,22 @@ std::string readName(std::string line, unsigned int start = 0) {
 
 
 int main() {
+	// Update the main source code to print out a message to state if the application is running standard or pre - release source code
+	std::cout << "This application is running in "
+#ifdef PRE_RELEASE
+		<< "Pre-Release"
+#else
+		<< "Standard"
+#endif
+		<< " mode";
+
 	//Next you need to implement the main function to read the StudentData.txt file
+	/// Update the main source code to read the StudentData_Emails.txt if compiled using a PRE_RELEASE compiler directive, commitand push into your Github Repo PreRelease branch
+#ifdef PRE_RELEASE
+	std::ifstream file("../StudentData_Emails1.txt", std::ifstream::in);
+#else
 	std::ifstream file("../StudentData.txt", std::ifstream::in);
+#endif 
 
 	if (!file.is_open()) {
 		std::cerr << "Could not open file" << std::endl;
