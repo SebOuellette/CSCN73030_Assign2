@@ -17,6 +17,7 @@ comma. Parse the data, create an object and push that object into a vector space
 typedef struct STUDENT_DATA {
 	std::string firstname;
 	std::string lastname;
+	std::string email;
 } STUDENT_DATA;
 
 std::string readName(std::string line, unsigned int start = 0) {
@@ -80,8 +81,14 @@ int main() {
 		//Each line read from the input file contains a first / last name pair separated by a comma.
 		// Parse the data, create an objectand push that object into a vector space
 		std::string lastname = readName(line);
-		STUDENT_DATA dat = { lastname, readName(line, lastname.length()+1) };
+		std::string firstname = readName(line, lastname.length() + 1);
+		STUDENT_DATA dat = { lastname, firstname };
 
+#ifdef PRE_RELEASE
+		std::string email = readName(line, firstname.length() + lastname.length() + 1);
+			
+		dat.email = email;
+#endif
 		vecSpace.push_back(dat);
 	}
 
